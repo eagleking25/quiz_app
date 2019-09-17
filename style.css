@@ -26,6 +26,10 @@ h1 {
     display: none;
 }
 
+#editmenu input[type=email] {
+    display: none;
+}
+
 #adder {
     display: none;
 }

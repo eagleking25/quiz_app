@@ -1,7 +1,24 @@
 $(document).ready(
     () => {
-        actions = (act, id) => {
-            alert(act, id);
+        action = (act, id) => {
+            if (act == 'edit') {
+                $.ajax({
+                    method: "GET",
+                    url: "http://localhost:3000/quiz/?id=" + id,
+                    success: (data) => {
+                        console.log(data[0]['title'], data[0]['code'], data[0]['Category']);
+                        $('#edittitle').val(data[0]['title']);
+                        $('#editcode').val(data[0]['code']);
+                        $('#editCategory').val(data[0]['Category']);
+                    }
+                })
+            }
+            if (act == 'delete') {
+                alert(act);
+            }
+            if (act == 'take') {
+                alert(act);
+            }
         };
 
         quizes = () => {
@@ -15,8 +32,8 @@ $(document).ready(
                         html += `<tr>
 <th scope="row">${i}</th>
 <td>${data[i-1]['title']}</td>
-<td><button onclick="edit('${data[i-1]['id']}')" id='edit' class='btn btn-info edit'>EDIT</button></td>
-<td><button value='${data[i-1]['id']}' id='take' class='btn btn-warning'>TAKE</button><td><button value='${data[i-1]['id']}' id='delete' class='btn btn-danger'>DELETE</button></td>
+<td><button onclick="action (this.id,'${data[i-1]['id']}')" id='edit' class='btn btn-info edit'>EDIT</button></td>
+<td><button onclick="action (this.id,'${data[i-1]['id']}')" id='take' class='btn btn-warning'>TAKE</button><td><button onclick="action (this.id,'${data[i-1]['id']}')" id='delete' class='btn btn-danger'>DELETE</button></td>
 </tr>`;
 
                     }
