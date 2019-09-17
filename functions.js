@@ -7,7 +7,7 @@ $(document).ready(
                     method: "GET",
                     url: "http://localhost:3000/quiz/?id=" + id,
                     success: (data) => {
-                        console.log(data[0]['title'], data[0]['code'], data[0]['Category']);
+                        console.log(data[0]['title'], data[0]['code'], data[0]['category']);
                         $('#edittitle').val(data[0]['title']);
                         $('#editcode').val(data[0]['code']);
                         $('#editCategory').val(data[0]['Category']);
@@ -15,13 +15,46 @@ $(document).ready(
                     }
                 })
             }
-            if (act == 'delete') {
-                alert(act);
+            if (act == 'delete' && confirm('Click Ok to delete Picture else Click cancel')) {
+                $.ajax({
+                    method: "DELETE",
+                    dataType: "JSON",
+                    url: "http://localhost:3000/quiz/" + id,
+                    success: () => {
+                        $('#good').show();
+                        $('#alertcg').html('Quiz Deleted!');
+                        quizes();
+                    }
+                })
             }
             if (act == 'take') {
                 alert(act);
             }
         };
+
+        taketest = (id) => {
+            let html = '';
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/questions/?qid=" + id,
+                success: (data) => {
+                    for (let i = 1; i < data.length + 1; i++) {
+
+                        html += `<label>
+<strong><i>${data[i-1]['ques1']}</i></strong>
+<div><label> ${data[i-1]['ropt']}<p><input type='radio' value='${data[i-1]['ropt']}' name="${data[i-1]['qid']}"></p></label><label>${data[i-1]['opt1']}<p><input type='radio' value='${data[i-1]['opt1']}' name="${data[i-1]['qid']}"></p></label><label>${data[i-1]['opt2']}<p><input type='radio' value='${data[i-1]['opt2']}'  name="${data[i-1]['qid']}"></p></label></div>
+</label><br>`;
+
+                    }
+                    alert(data[0]);
+                    $('#testing').html(html);
+
+
+                }
+            });
+
+        }
+        taketest(3);
 
         quizes = () => {
             let html = '';
@@ -35,7 +68,7 @@ $(document).ready(
 <th scope="row">${i}</th>
 <td>${data[i-1]['title']}</td>
 <td><button onclick="action (this.id,'${data[i-1]['id']}')" id='edit' class='btn btn-info edit'>EDIT</button></td>
-<td><button onclick="action (this.id,'${data[i-1]['id']}')" id='take' class='btn btn-warning'>TAKE</button><td><button onclick="action (this.id,'${data[i-1]['id']}')" id='delete' class='btn btn-danger'>DELETE</button></td>
+<td><button onclick="action (this.id,'${data[i-1]['id']}')" id='take' class='btn btn-warning'>TAKE</button><td><button onclick="action(this.id,'${data[i-1]['id']}')" id='delete' class='btn btn-danger'>DELETE</button></td>
 </tr>`;
 
                     }
@@ -63,21 +96,22 @@ $(document).ready(
             let title = $('#edittitle').val();
             let code = $('#editcode').val();
             let category = $('#editCategory').val();
+            let id = $('#editqid').val();
             let email = $('#editemail').val();
             let data = { title, code, category, email };
             $.ajax({
                 method: "PUT",
                 dataType: "JSON",
-                url: "http://localhost:3000/quiz/?id=" + id,
+                url: "http://localhost:3000/quiz/" + id,
                 data: data,
                 success: () => {
-                    alert('dat');
-                    $('#goode').show();
+                    $('#egood').show();
                     $('#alerteg').html('Quiz Edited!');
                     $('#editform').hide();
                     $('#edittitle').val('');
                     $('#editcode').val('');
                     $('#editCategory').val('');
+                    quizes();
                 }
             })
 
@@ -127,6 +161,9 @@ $(document).ready(
                             $('#adder').show();
                             quizid();
                             $('#next').hide();
+                            $('#title').val('');
+                            $('#code').val('');
+                            $('#Category').val('');
                         }
 
 
@@ -240,6 +277,7 @@ $(document).ready(
             })
         $('#eoption').on('click',
             () => {
+                quizes();
                 $('#equiz').show();
                 $('#cquiz').hide();
             })
