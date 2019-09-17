@@ -1,0 +1,31 @@
+body {
+    columns: #666666;
+}
+
+h1 {
+    color: #28a745;
+}
+
+#lform {
+    display: none;
+}
+
+.alert {
+    display: none;
+}
+
+#equiz {
+    display: none;
+}
+
+#cquiz input[type=email] {
+    display: none;
+}
+
+#squiz input[type=email] {
+    display: none;
+}
+
+#adder {
+    display: none;
+}

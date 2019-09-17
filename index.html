@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="./jquery.js"></script>
+    <script src="functions.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Eagle Quiz!</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class='row'>
+            <div class='col-lg-8'>
+                <h1> QUIZ EAGLE
+                </h1>
+            </div>
+            <div class='col-lg-4'>
+                <div class="btn-group btn-group-toggle col-lg-12 my-5" data-toggle="buttons">
+                    <label class="btn btn-secondary active" id="soption">
+                              <input type="radio" name="options"  autocomplete="off" checked> <h2>SIGNUP</h2>
+                            </label><label class="btn btn-secondary" id="loption">
+                              <input type="radio" name="options"  autocomplete="off"> <h2>LOGIN</h2>
+                            </label></div>
+
+                <div class="alert alert-warning" id='error'>
+                    <strong id='alertc'></strong>
+                </div>
+                <form method='post' class='m-2' id='sform'>
+                    <div class='row'><input name='email' id='semail' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
+                        <input name='fname' id='fname' class='col-lg-6 form-control my-3' placeholder="First Name" required><input name='lname' id='lname' class='col-lg-6 form-control my-3' placeholder="Last Name" required>
+                        <input name='phone' id='phone' class="col-lg-12 form-control" placeholder="Phone Number" required>
+                        <select id='Category' class="col-lg-12 form-control my-3" required><option value="" selected>Select Category</option><option value="Commercial">Commercial</option><option value="Personal">Personal</option></select>
+                        <input class="col-lg-6 form-control py-4 my-3" id='auths' readonly><input class="col-lg-6 form-control py-4 my-3" id='authvalues'>
+                        <input name='password' id='spassword' type='password' minlength="5" class="col-lg-12 form-control" placeholder="Password" required>
+                        <button name='signup' id='signup' class='btn-outline-success col-lg-12 form-control my-3' type="submit">SIGNUP</button></div>
+                </form>
+                <form method='post' class='m-2' id='lform'>
+                    <div class='row'><input name='email' id='lemail' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
+                        <input name='password' id='lpassword' class="col-lg-12 form-control" placeholder="Password" required>
+                        <input class="col-lg-6 form-control py-4 my-3" id='authl' readonly><input class="col-lg-6 form-control py-4 my-3" id='authvaluel'>
+                        <button name='login' id='login' class='btn-outline-success col-lg-12 form-control my-3' type="submit">LOGIN</button></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+
+</html>

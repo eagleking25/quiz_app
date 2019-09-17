@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="../jquery.js"></script>
+    <script src="../functions.js"></script>
+    <script src="../bootstrap.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+
+    <title>Eagle Quiz!</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class='row'>
+            <div class='col-lg-4'>
+                <h1> YOUR QUIZ
+                </h1>
+            </div>
+            <div class='col-lg-8'>
+                <div class="alert alert-warning" id='error'>
+                    <strong id='alertc'></strong>
+                </div>
+                <div class="alert alert-success" id='good'>
+                    <strong id='alertcg'></strong>
+                </div>
+                <div class="btn-group btn-group-toggle col-lg-12 my-5" data-toggle="buttons">
+                    <label class="btn btn-secondary active" id="coption">
+                              <input type="radio" name="options"  autocomplete="off" checked> <h2>CREATE</h2>
+                            </label><label class="btn btn-secondary" id="eoption">
+                              <input type="radio" name="options"  autocomplete="off"> <h2>EDIT</h2>
+                            </label></div>
+
+
+                <div id='cquiz'>
+                    <form method='post' class='m-2' id='next'>
+                        <div class='row'><input name='email' id='email' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
+                            <input name='title' id='title' class='col-lg-12 form-control my-3' placeholder="Title" minlength="5" maxlength="20" required>
+                            <input name='code' id='code' type='password' class="col-lg-12 form-control" placeholder="Access Code" minlength="3" required>
+                            <select id='Category' class="col-lg-12 form-control my-3" required><option value="" selected>Select Category</option><option value="Public">Public</option><option value="Private">Private</option></select>
+                            <button name='next' class='btn btn-primary col-lg-12 form-control my-3' type="submit">NEXT</button></div>
+                    </form>
+                    <form method='post' class='m-2' id='adder'>
+                        <div class='row'>
+                            <input name='qid' id='qid' type='hidden' class='col-lg-12 form-control my-3' required>
+                            <input name='ques1' id='ques1' class='col-lg-12 form-control my-3' placeholder="Question" maxlength="60" required>
+                            <input class="col-lg-6 form-control py-4 my-3" id='ropt' placeholder="Right Option"><input class="col-lg-6 form-control py-4 my-3" id='1opt' placeholder="Option 2">
+                            <input class="col-lg-6 form-control py-4 my-3" id='2opt' placeholder="Option 4"><input class="col-lg-6 form-control py-4 my-3" id='3opt' placeholder="Option 3">
+                            <button name='add' class='btn btn-primary col-lg-6 form-control my-3' type="submit">ADD</button><button name='create' id='create' class='btn btn-success col-lg-6 form-control my-3' type="submit">SUBMIT</button></div>
+                    </form>
+                </div>
+                <form method='post' class='m-2' id='equiz'>
+                    <div class='row'><input name='email' id='lemail' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
+                        <input name='password' id='lpassword' class="col-lg-12 form-control" placeholder="Password" required>
+                        <input class="col-lg-6 form-control py-4 my-3" id='authl' readonly><input class="col-lg-6 form-control py-4 my-3" id='authvaluel'>
+                        <button name='login' id='login' class='btn-outline-success col-lg-12 form-control my-3' type="submit">LOGIN</button></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+
+</html>

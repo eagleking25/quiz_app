@@ -1,0 +1,109 @@
+{
+    "questions": [{
+        "id": 1,
+        "qid": 1,
+        "question": "who am I?",
+        "ans": "eagleking",
+        "opt1": "dave",
+        "opt2": "ejiro",
+        "opt3": "erubure"
+    }],
+    "quiz": [{
+            "id": 1,
+            "title": "Test",
+            "code": "12345",
+            "cat": "public"
+        },
+        {
+            "title": "My Quiz",
+            "code": "12345",
+            "Category": "Public",
+            "id": 2
+        },
+        {
+            "title": "My Quiz",
+            "code": "12345",
+            "Category": "Public",
+            "id": 3
+        },
+        {
+            "title": "My Quiz",
+            "code": "12345",
+            "Category": "Public",
+            "id": 4
+        },
+        {
+            "title": "My Quiz",
+            "code": "12345",
+            "Category": "Public",
+            "id": 5
+        },
+        {
+            "title": "My Quiz",
+            "code": "12345",
+            "Category": "Public",
+            "id": 6
+        },
+        {
+            "title": "5",
+            "code": "123456",
+            "Category": "Public",
+            "id": 7
+        }
+    ],
+    "access": [{
+            "id": 1,
+            "fname": "dav",
+            "lname": "eji",
+            "phone": "dav",
+            "cat": "dav",
+            "email": "dav@g.c",
+            "password": "277772"
+        },
+        {
+            "fname": "dav",
+            "lname": "e",
+            "phone": "08108825755",
+            "Category": "Personal",
+            "email": "ejiro.erubure@gmail.com",
+            "pwd": "123456",
+            "id": 2
+        },
+        {
+            "fname": "jessy",
+            "lname": "d",
+            "phone": "08108825755",
+            "Category": "Commercial",
+            "email": "jecintageoffrey@yahoo.com",
+            "pwd": "123456",
+            "id": 3
+        },
+        {
+            "fname": "Ejiro",
+            "lname": "Erubure",
+            "phone": "08108825755",
+            "Category": "Commercial",
+            "email": "jecintageoffrey@yyahoo.com",
+            "pwd": "123456",
+            "id": 4
+        },
+        {
+            "fname": "Ejiro",
+            "lname": "Erubure",
+            "phone": "08108825755",
+            "Category": "Commercial",
+            "email": "jecintageoffrey@yahkoo.com",
+            "pwd": "123456",
+            "id": 5
+        },
+        {
+            "fname": "Ejiro",
+            "lname": "Erubure",
+            "phone": "08108825755",
+            "Category": "Commercial",
+            "email": "jecintageoffrey@yahbkoo.com",
+            "pwd": "123456",
+            "id": 6
+        }
+    ]
+}
