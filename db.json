@@ -56,6 +56,14 @@
       "opt1": "dd1",
       "opt2": "dd3",
       "id": 7
+    },
+    {
+      "qid": "7",
+      "ques1": "what the size of my mansion?",
+      "ropt": "20 hectares",
+      "opt1": "10 hectares",
+      "opt2": "5 hectares",
+      "id": 8
     }
   ],
   "quiz": [
@@ -76,7 +84,7 @@
       "title": "My Quiz",
       "code": "12345",
       "Category": "Public",
-      "email": "jecintageoffrey@yaoo.com",
+      "email": "jecintageoffrey@yahoo.com",
       "id": 3
     },
     {
@@ -99,6 +107,13 @@
       "Category": "Public",
       "email": "jecintageoffrey@yaoo.com",
       "id": 6
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yahoo.com",
+      "id": 7
     }
   ],
   "access": [

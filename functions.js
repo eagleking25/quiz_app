@@ -1,5 +1,8 @@
 $(document).ready(
     () => {
+        actions = (act, id) => {
+            alert(act, id);
+        };
 
         quizes = () => {
             let html = '';
@@ -8,19 +11,21 @@ $(document).ready(
                 url: "http://localhost:3000/quiz/?email=" + $('#useremail').val(),
                 success: (data) => {
                     for (let i = 1; i < data.length + 1; i++) {
+
                         html += `<tr>
 <th scope="row">${i}</th>
 <td>${data[i-1]['title']}</td>
-<td><button value='${data[i-1]['id']}' id='edit' class='btn btn-info'>EDIT</button></td>
-<td><button value='${data[i-1]['id']}' id='take' class='btn btn-warning'>TAKE</button></td>
+<td><button onclick="edit('${data[i-1]['id']}')" id='edit' class='btn btn-info edit'>EDIT</button></td>
+<td><button value='${data[i-1]['id']}' id='take' class='btn btn-warning'>TAKE</button><td><button value='${data[i-1]['id']}' id='delete' class='btn btn-danger'>DELETE</button></td>
 </tr>`;
 
                     }
+                    $('#quizlog').html(html);
 
 
                 }
             });
-            $('#quizlog').html(html);
+
         }
 
         function quizid() {
@@ -183,7 +188,6 @@ $(document).ready(
             })
         $('#eoption').on('click',
             () => {
-                quizes();
                 $('#equiz').show();
                 $('#cquiz').hide();
             })
@@ -236,7 +240,7 @@ $(document).ready(
         }
         for (var i = 0; i < $("input[type='email']").length; i++) {
             if (query.split(''.includes('@'))) {
-
+                quizes();
                 document.getElementById($("input[type='email']")[i].id).value = query
             };
 
