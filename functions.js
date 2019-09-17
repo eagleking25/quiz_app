@@ -1,12 +1,36 @@
 $(document).ready(
     () => {
+        quizes();
+        quizes = () => {
+            let html = '';
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/quiz/",
+                success: (data) => {
+                    for (let i = 1; i < data.length + 1; i++) {
+                        html += `<tr>
+<th scope="row">${i}</th>
+<td>${date[i-1]['title']}</td>
+<td><button value='${date[i-1]['id']}' id='edit'>EDIT</button></td>
+<td><button value='${date[i-1]['id']}' id='take'>TAKE</button></td>
+</tr>`
+                    }
+
+
+                }
+            });
+            console.log(html);
+            $('#quizlog').val(html);
+        }
 
         function quizid() {
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/quiz",
+                url: "http://localhost:3000/quiz/",
                 success: (data) => {
-                    return data.length;
+                    $('#quiztitle').html(data[data.length - 1]['title']);
+                    $('#qid').val(data.length);
+
                 }
             });
         }
@@ -27,7 +51,7 @@ $(document).ready(
                 success: () => {
                     $('#good').show();
                     $('#alertcg').html('Question added!');
-                    $('#quest').val('');
+                    $('#ques1').val('');
                     $('#qid').val(qid);
                     $('#1opt').val('');
                     $('#2opt').val('');
@@ -36,12 +60,16 @@ $(document).ready(
                 }
             })
         });
+        $('#ques1').on('change', e => {
+            $('#good').hide();
+        });
         $('#next').on('submit', (e) => {
                 e.preventDefault();
                 let title = $('#title').val();
                 let code = $('#code').val();
                 let Category = $('#Category').val();
-                let data = { title, code, Category };
+                let email = $('#useremail').val();
+                let data = { title, code, Category, email };
                 $.ajax({
                         method: "POST",
                         url: "http://localhost:3000/quiz",
@@ -49,7 +77,7 @@ $(document).ready(
                         data: data,
                         success: () => {
                             $('#adder').show();
-                            $('#qid').val(quizid());
+                            quizid();
                             $('#next').hide();
                         }
 
@@ -202,13 +230,14 @@ $(document).ready(
         if (pos !== -1) {
             var query = document.location
                 .toString().split('').slice(pos + 1, document.location
-                    .toString().split('').length - 1);
+                    .toString().split('').length);
             query = query.join('');
         }
         for (var i = 0; i < $("input[type='email']").length; i++) {
-            $("input[type='email']").val(query);
+            document.getElementById($("input[type='email']")[i].id).value = query;
 
         }
+
     }
 
 
