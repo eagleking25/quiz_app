@@ -2,6 +2,7 @@ $(document).ready(
     () => {
         action = (act, id) => {
             if (act == 'edit') {
+                $('#editmenu').show();
                 $.ajax({
                     method: "GET",
                     url: "http://localhost:3000/quiz/?id=" + id,
@@ -10,6 +11,7 @@ $(document).ready(
                         $('#edittitle').val(data[0]['title']);
                         $('#editcode').val(data[0]['code']);
                         $('#editCategory').val(data[0]['Category']);
+                        $('#editqid').val(data[0]['id']);
                     }
                 })
             }
@@ -56,6 +58,30 @@ $(document).ready(
                 }
             });
         }
+        $('#editform').on('submit', (e) => {
+            e.preventDefault();
+            let title = $('#edittitle').val();
+            let code = $('#editcode').val();
+            let category = $('#editCategory').val();
+            let email = $('#editemail').val();
+            let data = { title, code, category, email };
+            $.ajax({
+                method: "PUT",
+                dataType: "JSON",
+                url: "http://localhost:3000/quiz/?id=" + id,
+                data: data,
+                success: () => {
+                    alert('dat');
+                    $('#goode').show();
+                    $('#alerteg').html('Quiz Edited!');
+                    $('#editform').hide();
+                    $('#edittitle').val('');
+                    $('#editcode').val('');
+                    $('#editCategory').val('');
+                }
+            })
+
+        });
         $('#adder').on('submit', (e) => {
             e.preventDefault();
             let qid = $('#qid').val();
@@ -197,7 +223,16 @@ $(document).ready(
         if (title == 'index') { title = 'Home'; }
         console.log(title);
         $('title').html(`${title}-Eagle Quiz!`);
-        $('#sform').on('submit')
+        $('#data').on('click',
+            () => {
+                $('#editform').hide();
+                $('#questionform').show();
+            })
+        $('#questions').on('click',
+            () => {
+                $('#editform').show();
+                $('#questionform').hide();
+            })
         $('#coption').on('click',
             () => {
                 $('#equiz').hide();

@@ -14,6 +14,14 @@ h1 {
     display: none;
 }
 
+#editmenu {
+    display: none;
+}
+
+#questionform {
+    display: none;
+}
+
 #equiz {
     display: none;
 }

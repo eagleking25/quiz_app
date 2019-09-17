@@ -71,7 +71,7 @@
       "id": 1,
       "title": "Test",
       "code": "12345",
-      "cat": "public",
+      "category": "public",
       "email": "dav@g.c"
     },
     {
@@ -114,6 +114,20 @@
       "Category": "Public",
       "email": "jecintageoffrey@yahoo.com",
       "id": 7
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yahoo.com",
+      "id": 8
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "category": "Public",
+      "email": "jecintageoffrey@yahoo.com",
+      "id": 9
     }
   ],
   "access": [
