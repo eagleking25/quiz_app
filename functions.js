@@ -1,26 +1,26 @@
 $(document).ready(
     () => {
-        quizes();
+
         quizes = () => {
             let html = '';
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/quiz/",
+                url: "http://localhost:3000/quiz/?email=" + $('#useremail').val(),
                 success: (data) => {
                     for (let i = 1; i < data.length + 1; i++) {
                         html += `<tr>
 <th scope="row">${i}</th>
-<td>${date[i-1]['title']}</td>
-<td><button value='${date[i-1]['id']}' id='edit'>EDIT</button></td>
-<td><button value='${date[i-1]['id']}' id='take'>TAKE</button></td>
-</tr>`
+<td>${data[i-1]['title']}</td>
+<td><button value='${data[i-1]['id']}' id='edit' class='btn btn-info'>EDIT</button></td>
+<td><button value='${data[i-1]['id']}' id='take' class='btn btn-warning'>TAKE</button></td>
+</tr>`;
+
                     }
 
 
                 }
             });
-            console.log(html);
-            $('#quizlog').val(html);
+            $('#quizlog').html(html);
         }
 
         function quizid() {
@@ -183,6 +183,7 @@ $(document).ready(
             })
         $('#eoption').on('click',
             () => {
+                quizes();
                 $('#equiz').show();
                 $('#cquiz').hide();
             })
@@ -234,7 +235,10 @@ $(document).ready(
             query = query.join('');
         }
         for (var i = 0; i < $("input[type='email']").length; i++) {
-            document.getElementById($("input[type='email']")[i].id).value = query;
+            if (query.split(''.includes('@'))) {
+
+                document.getElementById($("input[type='email']")[i].id).value = query
+            };
 
         }
 
