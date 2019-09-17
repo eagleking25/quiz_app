@@ -1,109 +1,160 @@
 {
-    "questions": [{
-        "id": 1,
-        "qid": 1,
-        "question": "who am I?",
-        "ans": "eagleking",
-        "opt1": "dave",
-        "opt2": "ejiro",
-        "opt3": "erubure"
-    }],
-    "quiz": [{
-            "id": 1,
-            "title": "Test",
-            "code": "12345",
-            "cat": "public"
-        },
-        {
-            "title": "My Quiz",
-            "code": "12345",
-            "Category": "Public",
-            "id": 2
-        },
-        {
-            "title": "My Quiz",
-            "code": "12345",
-            "Category": "Public",
-            "id": 3
-        },
-        {
-            "title": "My Quiz",
-            "code": "12345",
-            "Category": "Public",
-            "id": 4
-        },
-        {
-            "title": "My Quiz",
-            "code": "12345",
-            "Category": "Public",
-            "id": 5
-        },
-        {
-            "title": "My Quiz",
-            "code": "12345",
-            "Category": "Public",
-            "id": 6
-        },
-        {
-            "title": "5",
-            "code": "123456",
-            "Category": "Public",
-            "id": 7
-        }
-    ],
-    "access": [{
-            "id": 1,
-            "fname": "dav",
-            "lname": "eji",
-            "phone": "dav",
-            "cat": "dav",
-            "email": "dav@g.c",
-            "password": "277772"
-        },
-        {
-            "fname": "dav",
-            "lname": "e",
-            "phone": "08108825755",
-            "Category": "Personal",
-            "email": "ejiro.erubure@gmail.com",
-            "pwd": "123456",
-            "id": 2
-        },
-        {
-            "fname": "jessy",
-            "lname": "d",
-            "phone": "08108825755",
-            "Category": "Commercial",
-            "email": "jecintageoffrey@yahoo.com",
-            "pwd": "123456",
-            "id": 3
-        },
-        {
-            "fname": "Ejiro",
-            "lname": "Erubure",
-            "phone": "08108825755",
-            "Category": "Commercial",
-            "email": "jecintageoffrey@yyahoo.com",
-            "pwd": "123456",
-            "id": 4
-        },
-        {
-            "fname": "Ejiro",
-            "lname": "Erubure",
-            "phone": "08108825755",
-            "Category": "Commercial",
-            "email": "jecintageoffrey@yahkoo.com",
-            "pwd": "123456",
-            "id": 5
-        },
-        {
-            "fname": "Ejiro",
-            "lname": "Erubure",
-            "phone": "08108825755",
-            "Category": "Commercial",
-            "email": "jecintageoffrey@yahbkoo.com",
-            "pwd": "123456",
-            "id": 6
-        }
-    ]
+  "questions": [
+    {
+      "id": 1,
+      "qid": 1,
+      "question": "who am I?",
+      "ans": "eagleking",
+      "opt1": "dave",
+      "opt2": "ejiro",
+      "opt3": "erubure"
+    },
+    {
+      "qid": "3",
+      "ques1": "whats my name?",
+      "ropt": "dave",
+      "opt1": "1",
+      "opt2": "2e",
+      "id": 2
+    },
+    {
+      "qid": "3",
+      "ques1": "what car do i use?",
+      "ropt": "ferarri",
+      "opt1": "s",
+      "opt2": "s",
+      "id": 3
+    },
+    {
+      "qid": "3",
+      "ques1": "what the size of my mansion?",
+      "ropt": "4hectares",
+      "opt1": "e",
+      "opt2": "s",
+      "id": 4
+    },
+    {
+      "qid": "4",
+      "ques1": "what the size of my mansion?",
+      "ropt": "10 hectares",
+      "opt1": "s",
+      "opt2": "d",
+      "id": 5
+    },
+    {
+      "qid": "6",
+      "ques1": "fsf",
+      "ropt": "10 hectares",
+      "opt1": "nnnn",
+      "opt2": "s",
+      "id": 6
+    },
+    {
+      "qid": "6",
+      "ques1": "dd",
+      "ropt": "dd",
+      "opt1": "dd1",
+      "opt2": "dd3",
+      "id": 7
+    }
+  ],
+  "quiz": [
+    {
+      "id": 1,
+      "title": "Test",
+      "code": "12345",
+      "cat": "public",
+      "email": "dav@g.c"
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "id": 2
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yaoo.com",
+      "id": 3
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yaoo.com",
+      "id": 4
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yaoo.com",
+      "id": 5
+    },
+    {
+      "title": "My Quiz",
+      "code": "12345",
+      "Category": "Public",
+      "email": "jecintageoffrey@yaoo.com",
+      "id": 6
+    }
+  ],
+  "access": [
+    {
+      "id": 1,
+      "fname": "dav",
+      "lname": "eji",
+      "phone": "dav",
+      "cat": "dav",
+      "email": "dav@g.c",
+      "password": "277772"
+    },
+    {
+      "fname": "dav",
+      "lname": "e",
+      "phone": "08108825755",
+      "Category": "Personal",
+      "email": "ejiro.erubure@gmail.com",
+      "pwd": "123456",
+      "id": 2
+    },
+    {
+      "fname": "jessy",
+      "lname": "d",
+      "phone": "08108825755",
+      "Category": "Commercial",
+      "email": "jecintageoffrey@yahoo.com",
+      "pwd": "123456",
+      "id": 3
+    },
+    {
+      "fname": "Ejiro",
+      "lname": "Erubure",
+      "phone": "08108825755",
+      "Category": "Commercial",
+      "email": "jecintageoffrey@yyahoo.com",
+      "pwd": "123456",
+      "id": 4
+    },
+    {
+      "fname": "Ejiro",
+      "lname": "Erubure",
+      "phone": "08108825755",
+      "Category": "Commercial",
+      "email": "jecintageoffrey@yahkoo.com",
+      "pwd": "123456",
+      "id": 5
+    },
+    {
+      "fname": "Ejiro",
+      "lname": "Erubure",
+      "phone": "08108825755",
+      "Category": "Commercial",
+      "email": "jecintageoffrey@yahbkoo.com",
+      "pwd": "123456",
+      "id": 6
+    }
+  ]
 }
