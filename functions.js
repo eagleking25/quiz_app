@@ -1,5 +1,111 @@
 $(document).ready(
     () => {
+        function scoretest(id, ans, count) {
+
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/questions/" + id,
+                async: false,
+                success: (data) => {
+                    if (ans == data["ropt"]) {
+                        count = count + 1;
+                    }
+                }
+            })
+            return count;
+
+        }
+
+        quiztitle = (id) => {
+            let title = '';
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/quiz/" + id,
+                async: false,
+                success: (data) => {
+                    title = data['title'];
+                }
+            })
+            return title;
+        }
+
+        $('#testing').on('submit', (e) => {
+            e.preventDefault();
+            var score = 0;
+            let qty = ($('#testing  input[type=radio]').length) / 3;
+            let count = qty;
+
+            $('#testing  input[type=radio]:checked').each(function() {
+                count--;
+
+
+                score = scoretest($(this).attr('name'), $(this).val(), score);
+
+            });
+            $('.modal-body').html((score * 100 / qty) + '%');
+
+
+        })
+        qdelete = (id) => {
+            if (confirm('Click Ok to proceed else Click Cancel')) {
+                $.ajax({
+                    method: "DELETE",
+                    url: "http://localhost:3000/questions/" + id,
+                    success: (data) => {
+                        quizes();
+                        taketest(id);
+
+                    }
+                })
+            }
+        }
+
+        qedit = (id) => {
+            $('#questionform').show();
+            $('#editmenu').show();
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/questions/" + id,
+                success: (data) => {
+                    $('#ques1e').val(data['ques1']);
+                    $('#ropte').val(data['ropt']);
+                    $('#1opte').val(data['opt1']);
+                    $('#2opte').val(data['opt2']);
+                    $('#editqide').val(data['id']);
+                    $('#rqide').val(data['qid']);
+                    $('#editform').hide();
+                }
+            })
+        }
+        $('#questionform').on('submit', (e) => {
+            e.preventDefault();
+            let qid = $('#rqide').val();
+            let id = $('#editqide').val();
+            let ques1 = $('#ques1e').val();
+            let ropt = $('#ropte').val();
+            let opt1 = $('#1opte').val();
+            let opt2 = $('#2opte').val();
+            let data = { qid, ques1, ropt, opt1, opt2 };
+            $.ajax({
+                method: "PUT",
+                url: "http://localhost:3000/questions/" + id,
+                dataType: 'JSON',
+                data: data,
+                success: () => {
+                    taketest($('#rqide').val());
+                    $('#egood').show();
+                    $('#alerteg').html('Question Updated!');
+                    $('#2opte').val('');
+                    $('#1opte').val('');
+                    $('#ropte').val('');
+                    $('#ques1e').val('');
+                    let qid = $('#rqide').val('');
+                    $('#questionform').hide();
+                }
+            })
+        });
+
+
         action = (act, id) => {
             if (act == 'edit') {
                 $('#editmenu').show();
@@ -28,7 +134,21 @@ $(document).ready(
                 })
             }
             if (act == 'take') {
-                alert(act);
+
+                taketest(id);
+
+                $('#testingtitle').html(quiztitle(id));
+                $('.modal-title').html(quiztitle(id));
+            }
+            if (act == 'add') {
+                $('#testing').html('Add Questions to Quiz');
+                $('#quiztitle').html(quiztitle(id));
+                $('#qid').val(id);
+                $('#adder').show();
+                $('#cquiz').show();
+                $('#equiz').hide();
+                $('#next').hide();
+
             }
         };
 
@@ -38,15 +158,59 @@ $(document).ready(
                 method: "GET",
                 url: "http://localhost:3000/questions/?qid=" + id,
                 success: (data) => {
+                    if (data.length > 0) {
+                        for (let i = 1; i < data.length + 1; i++) {
+                            let arr = [data[i - 1]['ropt'], data[i - 1]['opt1'], data[i - 1]['opt2']];
+                            rand = (arr) => {
+                                var narr;
+                                let x = Math.floor(Math.random() * 2);
+                                if (x == 2) { narr = [2, 0, 1]; } else if (x == 1) { narr = [1, 2, 0]; } else { narr = [0, 2, 1]; }
+                                return narr;
+                            }
+                            let order = rand(arr);
+
+                            html += `<p><small><i class='btn btn-primary fas fa-edit' onclick='qedit(${data[i-1]['id']})'></i><i class='btn btn-primary fas fa-trash-alt' onclick='qdelete(${data[i-1]['id']})'></i></small></p>
+                        <strong><i>${data[i-1]['ques1']}</i></strong>
+                        <div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[0]]}' name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[0]]}</label></div><div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[1]]}' name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[1]]}</label></div><div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[2]]}'  name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[2]]}</label></div>
+</div>`;
+
+                        }
+                        html += `<button  name='mark' type='submit' class="btn btn-success col-12" data-toggle='modal' data-target='#testscore'>Submit</button>`;
+                        $('#testing').html(html);
+
+
+                    } else {
+                        $('#testing').html('Add Questions to Quiz');
+                        $('#qid').val(id);
+                        $('#adder').show();
+                        $('#cquiz').show();
+                        $('#equiz').hide();
+                        $('#next').hide();
+                    }
+                }
+            });
+
+        }
+
+        pubquizes = () => {
+            let html = '';
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/quiz/?Category=Public",
+                success: (data) => {
+
                     for (let i = 1; i < data.length + 1; i++) {
 
-                        html += `<label>
-<strong><i>${data[i-1]['ques1']}</i></strong>
-<div><label> ${data[i-1]['ropt']}<p><input type='radio' value='${data[i-1]['ropt']}' name="${data[i-1]['qid']}"></p></label><label>${data[i-1]['opt1']}<p><input type='radio' value='${data[i-1]['opt1']}' name="${data[i-1]['qid']}"></p></label><label>${data[i-1]['opt2']}<p><input type='radio' value='${data[i-1]['opt2']}'  name="${data[i-1]['qid']}"></p></label></div>
-</label><br>`;
+
+                        html += `<tr>
+<th scope="row">${i}</th>
+<td>${data[i-1]['title']}</td>
+<td><button onclick="takepublic(${data[i-1]['id']})"  class='btn btn-warning'>TAKE</button></td></tr>`;
 
                     }
-                    alert(data[0]);
                     $('#testing').html(html);
 
 
@@ -54,7 +218,45 @@ $(document).ready(
             });
 
         }
-        taketest(3);
+
+        takepublic = (id) => {
+            let html = '';
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/questions/?qid=" + id,
+                success: (data) => {
+                    if (data.length > 0) {
+                        for (let i = 1; i < data.length + 1; i++) {
+                            let arr = [data[i - 1]['ropt'], data[i - 1]['opt1'], data[i - 1]['opt2']];
+                            rand = (arr) => {
+                                var narr;
+                                let x = Math.floor(Math.random() * 2);
+                                if (x == 2) { narr = [2, 0, 1]; } else if (x == 1) { narr = [1, 2, 0]; } else { narr = [0, 2, 1]; }
+                                return narr;
+                            }
+                            let order = rand(arr);
+
+                            html += `
+                        <strong><i>${data[i-1]['ques1']}</i></strong>
+                        <div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[0]]}' name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[0]]}</label></div><div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[1]]}' name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[1]]}</label></div><div class="form-check">
+<input type='radio' class="form-check-input" value='${arr[order[2]]}'  name="${data[i-1]['id']}"><label class="form-check-label"> ${arr[order[2]]}</label></div>
+</div>`;
+
+                        }
+                        let xhtml = `<h2>${quiztitle(id)}</h2>` + html + `<button  name='mark' type='submit' class="btn btn-success col-12" data-toggle='modal' data-target='#testscore'>Submit</button>`;
+                        $('#testing').html(xhtml);
+
+
+                    } else {
+                        $('#testing').html('Add Questions to Quiz');
+                    }
+
+
+                }
+            })
+        }
 
         quizes = () => {
             let html = '';
@@ -69,7 +271,7 @@ $(document).ready(
 <td>${data[i-1]['title']}</td>
 <td><button onclick="action (this.id,'${data[i-1]['id']}')" id='edit' class='btn btn-info edit'>EDIT</button></td>
 <td><button onclick="action (this.id,'${data[i-1]['id']}')" id='take' class='btn btn-warning'>TAKE</button><td><button onclick="action(this.id,'${data[i-1]['id']}')" id='delete' class='btn btn-danger'>DELETE</button></td>
-</tr>`;
+<td><button onclick="action(this.id,'${data[i-1]['id']}')" id='add' class='btn btn-secondary'>ADD</button></td></tr>`;
 
                     }
                     $('#quizlog').html(html);
@@ -157,9 +359,11 @@ $(document).ready(
                         url: "http://localhost:3000/quiz",
                         dataType: 'JSON',
                         data: data,
-                        success: () => {
-                            $('#adder').show();
+                        success: (data) => {
                             quizid();
+                            $('#qid').val(data.id);
+                            $('#adder').show();
+
                             $('#next').hide();
                             $('#title').val('');
                             $('#code').val('');
@@ -205,6 +409,7 @@ $(document).ready(
                                 dataType: 'JSON',
                                 data: data,
                                 success: () => {
+                                    sessionStorage.setItem("s_email", email);
                                     window.location = './app/dashboard.html?email=' + email
                                 }
 
@@ -274,6 +479,8 @@ $(document).ready(
             () => {
                 $('#equiz').hide();
                 $('#cquiz').show();
+                $('#next').show();
+                $('#adder').hide();
             })
         $('#eoption').on('click',
             () => {
@@ -327,14 +534,16 @@ $(document).ready(
                 .toString().split('').slice(pos + 1, document.location
                     .toString().split('').length);
             query = query.join('');
-        }
-        for (var i = 0; i < $("input[type='email']").length; i++) {
-            if (query.split(''.includes('@'))) {
-                quizes();
-                document.getElementById($("input[type='email']")[i].id).value = query
-            };
+            for (var i = 0; i < $("input[type='email']").length; i++) {
 
-        }
+                if (query.split(''.includes('@'))) {
+                    quizes();
+                    document.getElementById($("input[type='email']")[i].id).value = query;
+                };
+            }
+
+
+        } else { pubquizes(); }
 
     }
 

@@ -10,6 +10,7 @@
     <script src="./jquery.js"></script>
     <script src="functions.js"></script>
     <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="./css/fontawesome.min.css">
     <link rel="stylesheet" href="./bootstrap.min.css">
     <link rel="stylesheet" href="./style.css">
 
@@ -20,7 +21,7 @@
 
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#"><img src='./img/icon.png' style="border-radius:50%"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
@@ -48,14 +49,30 @@
     <div class="container">
         <div class='row'>
             <div class='col-lg-8'>
-                <h1> QUIZ EAGLE
+                <h1 align='center'> QUIZ EAGLE
                 </h1>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./img/img1.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/img2.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/img3.png" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form id='testing'></form>
+                </div>
             </div>
             <div class='col-lg-4'>
                 <div class="btn-group btn-group-toggle col-lg-12 my-5" data-toggle="buttons">
-                    <label class="btn btn-secondary active" id="soption">
+                    <label class="btn btn-light active" id="soption">
                               <input type="radio" name="options"  autocomplete="off" checked> <h2>SIGNUP</h2>
-                            </label><label class="btn btn-secondary" id="loption">
+                            </label><label class="btn btn-light" id="loption">
                               <input type="radio" name="options"  autocomplete="off"> <h2>LOGIN</h2>
                             </label></div>
 
@@ -69,19 +86,45 @@
                         <select id='Category' class="col-lg-12 form-control my-3" required><option value="" selected>Select Category</option><option value="Commercial">Commercial</option><option value="Personal">Personal</option></select>
                         <input class="col-lg-6 form-control py-4 my-3" id='auths' readonly><input class="col-lg-6 form-control py-4 my-3" id='authvalues'>
                         <input name='password' id='spassword' type='password' minlength="5" class="col-lg-12 form-control" placeholder="Password" required>
-                        <button name='signup' id='signup' class='btn-outline-success col-lg-12 form-control my-3' type="submit">SIGNUP</button></div>
+                        <button name='signup' id='signup' class='btn-outline-success col-lg-12 form-control my-3' id='btn' type="submit">SIGNUP</button></div>
                 </form>
                 <form method='post' class='m-2' id='lform'>
                     <div class='row'><input name='email' id='lemail' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
                         <input name='password' id='lpassword' class="col-lg-12 form-control" placeholder="Password" required>
                         <input class="col-lg-6 form-control py-4 my-3" id='authl' readonly><input class="col-lg-6 form-control py-4 my-3" id='authvaluel'>
-                        <button name='login' id='login' class='btn-outline-success col-lg-12 form-control my-3' type="submit">LOGIN</button></div>
+                        <button name='login' id='login' class='btn-outline-success col-lg-12 form-control my-3' id='btn' type="submit">LOGIN</button></div>
                 </form>
-
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id='publicquiz'>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="testscore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testresult"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    Eagle Quiz
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

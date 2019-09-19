@@ -7,50 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <script src="../jquery.js"></script>
     <script src="../functions.js"></script>
+    <script>
+        if (!sessionStorage.getItem("s_email")) {
+
+        }
+    </script>
     <script src="../bootstrap.js"></script>
     <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../style.css">
 
     <title>Eagle Quiz!</title>
 </head>
 
-<body>
-
+<body class="modal-open">
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#"><img src='../img/icon.png' style="border-radius:50%"></a>
+            <button onclick='window.location="../index.html"' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
             </div>
         </nav>
     </header>
     <div class="container">
         <div class='row'>
-            <div class='col-lg-4'>
+            <div class='col-lg-4' style="overflow: auto;height:700px">
                 <h1> YOUR QUIZ</h1>
                 <div class="alert alert-success" id='egood'>
-                    <strong id='alerteg'></strong>
+                    <strong id='alerteg '></strong>
                 </div>
                 <div id='testingmenu'>
                     <h2 id='testingtitle'></h2>
@@ -60,7 +50,8 @@
                 </div>
                 <div id='editmenu'>
                     <h2 id='editmess' align='center'></h2>
-                    <div class="row"><label class="btn btn-secondary col-lg-6 active" id='questions'> <button  class='btn btn-light col-lg-12   my-3' style='width:100%' type="submit">DATA</button></label><label class="btn  col-lg-6 btn-secondary active" id='data'><button  class='btn btn-light col-lg-12 form-control my-3' type="submit">QUESTIONS</button></label></div>
+                    <div class="row"><label class="btn btn-secondary col-lg-6 active" id='questions'> <button  class='btn btn-light col-lg-12 my-3' style='width:100%
+                ' type="submit">DATA</button></label><label class="btn  col-lg-6 btn-secondary active" id='data'><button  class='btn btn-light col-lg-12 form-control my-3' type="submit">QUESTIONS</button></label></div>
                     <form method='post' class='m-2' id='editform'>
 
                         <div class='row'>
@@ -73,18 +64,18 @@
                     </div>
                     <form method='post' class='m-2' id='questionform'>
                         <div class='row'>
-
-                            <input name='qid' id='qid' type='hidden' class='col-lg-12 form-control my-3' required>
+                            <input name='qid' id='editqide' type='hidden' class='col-lg-12 form-control my-3 ' required>
+                            <input id='rqide' type='hidden' class='col-lg-12 form-control my-3' required>
                             <input name='ques1' id='ques1e' class='col-lg-12 form-control my-3' placeholder="Question" maxlength="60" required>
-                            <input class="col-lg-6 form-control py-4 my-3" id='ropte' placeholder="Right Option"><input class="col-lg-6 form-control py-4 my-3" id='1opte' placeholder="Option 2">
-                            <input class="col-lg-6 form-control py-4 my-3" id='2opte' placeholder="Option 4"><input class="col-lg-6 form-control py-4 my-3" id='3opte' placeholder="Option 3">
-                            <button name='add' class='btn btn-primary col-lg-6 form-control my-3' type="submit">ADD</button><button name='create' id='create' class='btn btn-success col-lg-6 form-control my-3' type="submit">SUBMIT</button></div>
+                            <input class="col-lg-12 form-control py-4 my-3" id='ropte' placeholder="Right Option"><input class="col-lg-6 form-control py-4 my-3" id='1opte' placeholder="Option 2">
+                            <input class="col-lg-6 form-control py-4 my-3" id='2opte' placeholder="Option 4">
+                            <button name='add ' class='btn btn-primary col-lg-12 form-control my-3 ' type="submit">UPDATE</button></div>
                     </form>
                 </div>
             </div>
-            <div class='col-lg-8'>
+            <div class='col-lg-8' style="overflow: auto;height:800px">
                 <div class="alert alert-warning" id='error'>
-                    <strong id='alertc'></strong>
+                    <strong id='alertc '></strong>
                 </div>
                 <div class="alert alert-success" id='good'>
                     <strong id='alertcg'></strong>
@@ -98,9 +89,9 @@
 
 
                 <div id='cquiz'>
-                    <form method='post' class='m-2' id='next'>
+                    <form method='post' class='m-2 ' id='next'>
                         <div class='row'><input name='email' id='useremail' type='email' class='col-lg-12 form-control my-3' placeholder="Email" required>
-                            <input name='title' id='title' class='col-lg-12 form-control my-3' placeholder="Title" minlength="5" maxlength="20" required>
+                            <input name='title' id='title' class='col-lg-12 form-control my-3 ' placeholder="Title" minlength="5" maxlength="20" required>
                             <input name='code' id='code' type='password' class="col-lg-12 form-control" placeholder="Access Code" minlength="3" required>
                             <select id='Category' class="col-lg-12 form-control my-3" required><option value="" selected>Select Category</option><option value="Public">Public</option><option value="Private">Private</option></select>
                             <button name='next' class='btn btn-primary col-lg-12 form-control my-3' type="submit">NEXT</button></div>
@@ -110,9 +101,9 @@
                             <h2 id='quiztitle'></h2>
                             <input name='qid' id='qid' type='hidden' class='col-lg-12 form-control my-3' required>
                             <input name='ques1' id='ques1' class='col-lg-12 form-control my-3' placeholder="Question" maxlength="60" required>
-                            <input class="col-lg-6 form-control py-4 my-3" id='ropt' placeholder="Right Option"><input class="col-lg-6 form-control py-4 my-3" id='1opt' placeholder="Option 2">
-                            <input class="col-lg-6 form-control py-4 my-3" id='2opt' placeholder="Option 4"><input class="col-lg-6 form-control py-4 my-3" id='3opt' placeholder="Option 3">
-                            <button name='add' class='btn btn-primary col-lg-6 form-control my-3' type="submit">ADD</button><button name='create' id='create' class='btn btn-success col-lg-6 form-control my-3' type="submit">SUBMIT</button></div>
+                            <input class="col-lg-12 form-control py-4 my-3" id='ropt' placeholder="Right Option"><input class="col-lg-6 form-control py-4 my-3" id='1opt' placeholder="Option 2">
+                            <input class="col-lg-6 form-control py-4 my-3" id='2opt' placeholder="Option 4">
+                            <button name='add' class='btn btn-primary col-lg-12 form-control my-3' type="submit">ADD</button></div>
                     </form>
                 </div>
                 <div class='m-2' id='equiz'>
@@ -133,6 +124,23 @@
         </div>
     </div>
 
+    <div class="modal fade" id="testscore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testresult"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    Eagle Quiz
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
