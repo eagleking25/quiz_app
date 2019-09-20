@@ -137,30 +137,6 @@
       "opt1": "David",
       "opt2": "James",
       "id": 16
-    },
-    {
-      "qid": "10",
-      "ques1": "what did i study?",
-      "ropt": "statistics",
-      "opt1": "econs",
-      "opt2": "account",
-      "id": 17
-    },
-    {
-      "qid": "10",
-      "ques1": "where do i work?",
-      "ropt": "Access Bank",
-      "opt1": "First Bank",
-      "opt2": "GT Bank",
-      "id": 18
-    },
-    {
-      "qid": "11",
-      "ques1": "what did i study?",
-      "ropt": "statistics",
-      "opt1": "econs",
-      "opt2": "account",
-      "id": 19
     }
   ],
   "quiz": [
@@ -225,20 +201,6 @@
       "Category": "Public",
       "email": "jecintageoffrey@yahoo.com",
       "id": 12
-    },
-    {
-      "title": "Who am i?",
-      "code": "123456",
-      "Category": "Public",
-      "email": "jecintageoffrey@yahoo.com",
-      "id": 13
-    },
-    {
-      "title": "jennifer's",
-      "code": "123456",
-      "Category": "Public",
-      "email": "jecintageoffrey@yahoo.com",
-      "id": 14
     }
   ],
   "access": [
